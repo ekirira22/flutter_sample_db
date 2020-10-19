@@ -1,6 +1,11 @@
 # sample_flutter_app
 
-This is a simple flutter app that collects data from the app and uses php to convert the data into a JSON object ans store the data in a MySQL Database
+This is a simple flutter app that collects data from the app and inserts this data in a database
+For this to work you must have a remote server installed, preferrably xampp or wamp server.
+Inside the folder c-xampp-htdocs is a file containig the file submit_data.php which is supposed to be located
+in the htdocs folder under xampp or wamp(whichever you decide to use).
+Apache needs to be learning and '10.0.2.2' should be used as the localhost since 'localhost' or 127.0.0.1 
+won't work for android projects.
 
 ## Getting Started
 
