@@ -48,31 +48,28 @@ class _TransferDataState extends State {
      String email = emailController.text;
      String phoneNumber = phoneNumberController.text;
 
-     //API URL
-     var url = 'http://10.0.0.2:8000/submit_data.php';
-
-     // store all data with param name
-     var data = {'name': name, 'email':email, 'phone_number':phoneNumber};
-
-     //start webcall with data
-     var response = await http.post(url,body: json.encode(data));
-
-     //getting server response into a variable
-     var message = jsonDecode(response.body);
-
-     //if webcall is a success, remove circularprogressindicator
+    final response = await http.post('http://10.0.2.2/submit_data.php',
+      body: {
+        'name': nameController.text,
+        'email': emailController.text,
+        'phone_number': phoneNumberController.text,
+      }
+    );
 
      if(response.statusCode == 200){
        setState((){
          visible = false;
        });
+       nameController.clear();
+       emailController.clear();
+       phoneNumberController.clear();
      }
-     //show alert dialog with response JSON
+     //show dialog
      showDialog(
        context: context,
        builder:(BuildContext context){
          return AlertDialog(
-           title: new Text(message),
+           title: new Text("Name: " + name + '\n' + "Email " + email + '\n' + "Mobile No. " + phoneNumber),
            actions: <Widget>[
              FlatButton(
                child: new Text('OK'),
